@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+    <title>Welcome to Firebase Hosting</title>
+
+    <script>
+        $(document).ready(() => {
+            $.ajax({
+                    url: "https://us-central1-realtimehoon.cloudfunctions.net/helloWorld", // 클라이언트가 요청을 보낼 서버의 URL 주소
+
+                    type: "POST", // HTTP 요청 방식(GET, POST)
+                    dataType: "json" // 서버에서 보내줄 데이터의 타입
+                })
+                // HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨.
+                .done(function(json) {
+                    console.log(json);
+                })
+
+            $("#chatList").hide();
+
+            $("#join").on("click", () => {
+                let id = $("#idvalue").val();
+                let pwd = $("#pwdvalue").val();
+                database.ref("members/" + id).set(pwd);
+            });
+            $("#login").on("click", () => {
+                let id = $("#idvalue").val();
+                let pwd = $("#pwdvalue").val();
+                database.ref("members/" + id).on("value", (snapshot) => {
+                    if (snapshot.val()) {
+                        if (pwd == snapshot.val()) {
+                            alert("로그인 되었습니다.")
+                            $("#chatList").show();
+                        } else {
+                            alert("일치하지 않는 비밀번호입니다.")
+                        }
+
+                    } else {
+                        alert("가입되지 않은 회원")
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <input type="text" name="" value="" id="idvalue" placeholder="아이디">
+    <input type="text" name="" value="" id="pwdvalue" placeholder="패스워드">
+    <button type="button" name="button" id="login">로그인</button>
+    <button type="button" name="button" id="join">회원가입</button>
+    <div id="chatList">
+        채팅내용
+    </div>
+</body>
+
+</html>

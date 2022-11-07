@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+    <script>
+        $(document).ready(()=>{
+            $("#btn").on("click",()=>{
+                $("#one").html("개발부트캠프");
+                $("#one").css("backgroundColor","red");
+            });
+        });
+    </script>
+
+
+</head>
+<body>
+    <div id="one" style="background-color: blue;">
+        안녕하세요
+    </div>
+    <div id="btn" style="background-color: blue; float:left; color:white;">버튼</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>json 예제실습</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script>
+
+        $(document).ready(()=>{
+            let hoon = ["김경훈", 37, 173, 70, "hallmp@naver.com", "B"];
+
+            let hoonJson = {
+                // 키밸류값
+                name : "김경훈",
+                age : 37,
+                height: 173,
+                weight: 70,
+                email : "hallmp@name.com",
+                type : "B",
+            };
+
+            let userList= [
+                {name:"김경훈",age:37,type:"B"},
+                {name:"이한별",age:33,type:"O"},
+                {name:"박종수",age:29,type:"A"},
+                {name:"김다나",age:28,type:"O"},
+                {name:"박민영",age:27,type:"AB"},
+                {name:"김지원",age:31,type:"B"},
+
+            ];
+
+            for(i=0;i<6;i++){
+                $("#userList").append("<div>"+userList[i]["name"]+userList[i]["age"]+userList[i]["type"]+"</div>");
+            }
+        });
+    </script>
+</head>
+<body>
+    <div id="userList">
+
+    </div>
+</body>
+</html>
